@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<%- include('navbar') %>
+<h1 class="title"><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<table>
+    <thead>
+    <tr>
+        <th>MARCA</th>
+        <th>PAÍS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= brands.forEach(function (brand) { %>
+    <tr>
+        <td><%= brand.name %></td>
+        <td><%= brand.country %></td>
+    </tr>
+    <% }) %>
+    </tbody>
+</table>
+</body>
+</html>

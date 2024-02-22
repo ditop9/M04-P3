@@ -1,0 +1,21 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.container-fluid {
+  background-color: cornflowerblue;
+  height: 80px;
+  position: fixed;
+  top: 0;
+}
+.nav-item {
+  border-left: 2px solid white;
+}
+.nav-item:last-child{
+  border-right: 2px solid white;
+}
+.title {
+  margin-top: 5%;
+}
