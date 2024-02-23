@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html  lang="Es">
 <%- include('header') %>
 <body>
 <%- include('navbar') %>
@@ -8,15 +8,15 @@
 <table>
     <thead>
     <tr>
+        <th>COCHE</th>
         <th>MARCA</th>
-        <th>PAÍS</th>
     </tr>
     </thead>
     <tbody>
-    <% brands.forEach(function (brand) { %>
+    <% cars.forEach(function (car) { %>
     <tr>
-        <td><%= brand.name %></td>
-        <td><%= brand.country %></td>
+        <td><%= car.name %></td>
+        <td><%= car.brandName %></td>
     </tr>
     <% }) %>
     </tbody>

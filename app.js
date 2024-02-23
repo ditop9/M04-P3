@@ -26,21 +26,33 @@ let brands = [
   {id: 5, name: "Bugatti", country: "Italy"}
 ]
 let cars = [
-  {id: 1, name: "Golf", idbrand: 1},
-  {id: 2, name: "Corolla", idbrand: 2},
-  {id: 3, name: "Fiesta", idbrand: 3},
-  {id: 4, name: "Ibiza", idbrand: 4},
-  {id: 5, name: "Chiron", idbrand: 5}
+  {id: 1, name: "Golf", idbrand: 1, brandName: "Volkswagen"},
+  {id: 2, name: "Corolla", idbrand: 2, brandName: "Toyota"},
+  {id: 3, name: "Fiesta", idbrand: 3, brandName: "Ford"},
+  {id: 4, name: "Ibiza", idbrand: 4, brandName: "Seat"},
+  {id: 5, name: "Chiron", idbrand: 5, brandName: "BUgatti"}
 ]
 
-//// ENDPOINTS ////
+// ENDPOINTS
 
 app.get('/', (req, res) => {
   res.render('index', {title: 'Cars&Brands'})
 })
 
+// Adding data
+
 app.get('/brands', (req, res) => {
-  res.render('brands', {title: 'Marcas'})
+  res.render('brands', {
+    title: 'Marcas',
+    brands: brands
+  })
+})
+
+app.get('/cars', (req, res) => {
+  res.render('cars', {
+    title: 'Coches',
+    cars: cars
+  })
 })
 
 // catch 404 and forward to error handler
