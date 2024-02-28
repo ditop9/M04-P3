@@ -23,6 +23,7 @@ let brands = [
   {id: 4, name: "Seat", country: "España", year: 1950, founder: "", car: "Ibiza"},
   {id: 5, name: "Bugatti", country: "Italia", year: 1998, founder: "Ettore Bugatti", car: "Chiron"}
 ]
+let idBrands = 6
 let cars = [
   {id: 1, name: "Golf", idbrand: 1, brandName: "Volkswagen", cylinder: "1.0L", power: "110cv", price: "31.000€"},
   {id: 2, name: "Corolla", idbrand: 2, brandName: "Toyota", cylinder: "1.8L", power: "140cv", price: "28.000€"},
@@ -30,6 +31,7 @@ let cars = [
   {id: 4, name: "Ibiza", idbrand: 4, brandName: "Seat", cylinder: "1.0L", power: "75cv", price: "14.000€"},
   {id: 5, name: "Chiron", idbrand: 5, brandName: "Bugatti", cylinder: "8.0L", power: "1500cv", price: "2.400.000€"}
 ]
+let idCars = 6
 
 // ENDPOINTS
 
@@ -151,7 +153,8 @@ app.delete('/api/brands/:id', (req, res)=>{
 
 app.post('/api/insert_brand',(req, res)=>{
   let params = req.body
-  params.id = brands.length +1
+  params.id = idBrands
+  idBrands += 1
   brands.push(params)
   res.redirect('/brands')
 })
@@ -159,7 +162,8 @@ app.post('/api/insert_brand',(req, res)=>{
 // Insert new car
 app.post('/api/insert_car',(req, res)=>{
   let params = req.body
-  params.id = cars.length +1
+  params.id = idCars
+  idCars += 1
   cars.push(params)
   res.redirect('/cars')
 })
