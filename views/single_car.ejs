@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html  lang="Es">
+<%- include('header') %>
+<body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%- include('navbar') %>
+<div class="page-title">
+    <h1 class="title"><%= title %></h1>
+    <p>Página de coches</p>
+</div>
+<table class="table-main">
+    <thead>
+    <tr>
+        <th class="table-cell">COCHE</th>
+        <th class="table-cell">MARCA</th>
+        <th class="table-cell">CILINDRADA</th>
+        <th class="table-cell">POTENCIA</th>
+        <th class="table-cell">PRECIO</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="table-cell"><%= car.name %></td>
+        <td class="table-cell"><%= car.brandName %></td>
+        <td class="table-cell"><%= car.cylinder %></td>
+        <td class="table-cell"><%= car.power %></td>
+        <td class="table-cell"><%= car.price %></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

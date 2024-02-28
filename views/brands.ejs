@@ -2,24 +2,65 @@
 <html>
 <%- include('header') %>
 <body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <%- include('navbar') %>
-<h1 class="title"><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<table>
+<div class="title-container">
+    <div class="page-title">
+        <h1 class="title"><%= title %></h1>
+        <p>Página de marcas</p>
+    </div>
+    <form action="/search_brand" method="GET">
+        <label>
+            <input type="number" name="id" placeholder="ID de la marca">
+        </label>
+        <button type="submit">Search</button>
+    </form>
+</div>
+<table class="table-main">
     <thead>
     <tr>
-        <th>MARCA</th>
-        <th>PAÍS</th>
+        <th class="table-cell">MARCA</th>
+        <th class="table-cell">PAÍS</th>
+        <th class="table-cell">FUNDACIÓN</th>
+        <th class="table-cell">FUNDADOR</th>
+        <th class="table-cell">COCHE</th>
     </tr>
     </thead>
     <tbody>
     <% brands.forEach(function (brand) { %>
     <tr>
-        <td><%= brand.name %></td>
-        <td><%= brand.country %></td>
+        <td class="table-cell"><%= brand.name %></td>
+        <td class="table-cell"><%= brand.country %></td>
+        <td class="table-cell"><%= brand.year %></td>
+        <td class="table-cell"><%= brand.founder %></td>
+        <td class="table-cell"><%= brand.car %></td>
+        <td class="table-delete"><button class="button-delete" onclick="deleteElement(<%= brand.id %>)">
+                DELETE
+            </button>
+        </td>
     </tr>
     <% }) %>
     </tbody>
 </table>
+<script>
+    async function deleteElement(id){
+        try {
+            await $.ajax({
+                url: '/api/brands/' + id,
+                type: 'DELETE'
+            });
+            window.location.reload();
+        } catch (e) {
+            console.log('Error: ', e.status, e.statusText);
+        }
+    }
+
+    $(document).ready(() =>{
+        $('.button-delete').click(function() {
+            const id = $(this).data('brand-id');
+            deleteElement(id);
+        });
+    });
+</script>
 </body>
 </html>

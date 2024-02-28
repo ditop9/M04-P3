@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('header') %>
+<body>
+<%- include('navbar')%>
+<h1> INSERT CAR</h1>
+<form class="form" action="/api/insert_car" method="POST">
+
+    <label for="id_name">Coche</label>
+    <input id="id_name" type="text" name="name" >
+
+    <label for="brand">Marca</label>
+    <input id="brand" type="text" name="brand" >
+
+    <label for="cylinder">Cilindrada</label>
+    <input id="cylinder" type="number" name="cylinder" >
+
+    <label for="power">Potencia</label>
+    <input id="power" type="number" name="power" >
+
+    <label for="price">Precio</label>
+    <input id="price" type="number" name="price" >
+
+    <input type="submit" value="insert">
+</form>
+</body>
+</html>

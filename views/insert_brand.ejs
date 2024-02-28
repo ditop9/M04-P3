@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('header') %>
+<body>
+<%- include('navbar')%>
+<h1> INSERT CAR</h1>
+<form class="form" action="/api/insert_brand" method="POST">
+
+    <label for="id_name">Marca</label>
+    <input id="id_name" type="text" name="name" >
+
+    <label for="country">País</label>
+    <input id="country" type="text" name="country" >
+
+    <label for="year_foundation">Año fundación</label>
+    <input id="year_foundation" type="number" name="year_foundation" >
+
+    <label for="founder">Fundador</label>
+    <input id="founder" type="text" name="founder" >
+
+    <label for="car">Coche destacado</label>
+    <input id="car" type="text" name="car" >
+
+    <input type="submit" value="insert">
+</form>
+</body>
+</html>
