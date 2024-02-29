@@ -25,11 +25,11 @@ let brands = [
 ]
 let idBrands = 6
 let cars = [
-  {id: 1, name: "Golf", idbrand: 1, brandName: "Volkswagen", cylinder: "1.0L", power: "110cv", price: "31.000€"},
-  {id: 2, name: "Corolla", idbrand: 2, brandName: "Toyota", cylinder: "1.8L", power: "140cv", price: "28.000€"},
-  {id: 3, name: "Fiesta", idbrand: 3, brandName: "Ford", cylinder: "1.0L", power: "90cv", price: "12.000€"},
-  {id: 4, name: "Ibiza", idbrand: 4, brandName: "Seat", cylinder: "1.0L", power: "75cv", price: "14.000€"},
-  {id: 5, name: "Chiron", idbrand: 5, brandName: "Bugatti", cylinder: "8.0L", power: "1500cv", price: "2.400.000€"}
+  {id: 1, name: "Golf", brandName: "Volkswagen", cylinder: 1000, power: 110, price: 31000},
+  {id: 2, name: "Corolla", brandName: "Toyota", cylinder: 1800, power: 140, price: 28000},
+  {id: 3, name: "Fiesta", brandName: "Ford", cylinder: 1000, power: 90, price: 12000},
+  {id: 4, name: "Ibiza", brandName: "Seat", cylinder: 1000, power: 75, price: 14000},
+  {id: 5, name: "Chiron", brandName: "Bugatti", cylinder: 8000, power: 1500, price: 2400000}
 ]
 let idCars = 6
 
@@ -48,11 +48,19 @@ app.get('/brands', (req, res) => {
   })
 })
 
+app.get('/api/brands', (req, res) => {
+  res.status(200).send(brands)
+})
+
 app.get('/cars', (req, res) => {
   res.render('cars', {
     title: 'Coches',
     cars: cars
   })
+})
+
+app.get('/api/cars', (req, res) => {
+  res.status(200).send(cars)
 })
 
 // Insert elements
@@ -149,7 +157,7 @@ app.delete('/api/brands/:id', (req, res)=>{
   }
 })
 
-// Insert new brand
+// Insert elements
 
 app.post('/api/insert_brand',(req, res)=>{
   let params = req.body
@@ -159,7 +167,6 @@ app.post('/api/insert_brand',(req, res)=>{
   res.redirect('/brands')
 })
 
-// Insert new car
 app.post('/api/insert_car',(req, res)=>{
   let params = req.body
   params.id = idCars
@@ -179,6 +186,54 @@ app.get('/update_car/:id', (req, res) => {
   res.render('update_car.ejs', {
     title: 'Update Car', car: car });
 });
+
+app.post('/api/update_car/:id', (req, res) => {
+  const carId = parseInt(req.params.id);
+  const carIndex = cars.findIndex(car => car.id === carId);
+  if (carIndex === -1) {
+    return res.status(404).send('Car not found');
+  }
+  cars[carIndex] = {
+    id: carId,
+    name: req.body.name,
+    brandName: req.body.brandName,
+    cylinder: req.body.cylinder,
+    power: req.body.power,
+    price: req.body.price
+  };
+
+  res.redirect('/cars');
+});
+
+app.get('/update_brand/:id', (req, res) => {
+  const brandId = parseInt(req.params.id);
+  const brand = brands.find(brand => brand.id === brandId)
+  if (!brand) {
+    return res.status(404).send('Brand not found');
+  }
+  res.render('update_brand.ejs', {
+    title: 'Update Brand', brand: brand });
+});
+
+app.post('/api/update_brand/:id', (req, res) => {
+  const brandId = parseInt(req.params.id);
+  const brandIndex = brands.findIndex(brand => brand.id === brandId);
+  if (brandIndex === -1) {
+    return res.status(404).send('Brand not found');
+  }
+
+  brands[brandIndex] = {
+    id: brandId,
+    name: req.body.name,
+    country: req.body.country,
+    year: req.body.year,
+    founder: req.body.founder,
+    car: req.body.car
+  };
+
+  res.redirect('/brands');
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

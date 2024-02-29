@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('header') %>
+<body>
+<%- include('navbar')%>
+<h1> UPDATE BRAND</h1>
+<form class="form" action="/api/update_brand/<%= brand.id %>" method="POST">
+    <input type="hidden" name="id" value="<%= brand.id %>">
+
+    <label for="name">Nombre de la Marca</label>
+    <input id="name" type="text" name="name" value="<%= brand.name %>">
+
+    <label for="country">País</label>
+    <input id="country" type="text" name="country" value="<%= brand.country %>">
+
+    <label for="year">Año de Fundación</label>
+    <input id="year" type="number" name="year" value="<%= brand.year %>">
+
+    <label for="founder">Fundador</label>
+    <input id="founder" type="text" name="founder" value="<%= brand.founder %>">
+
+    <label for="car">Coche Emblemático</label>
+    <input id="car" type="text" name="car" value="<%= brand.car %>">
+
+    <input type="submit" value="Actualizar Marca">
+</form>
+
+</body>
+</html>

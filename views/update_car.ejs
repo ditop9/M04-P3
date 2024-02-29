@@ -4,13 +4,14 @@
 <body>
 <%- include('navbar')%>
 <h1> UPDATE CAR</h1>
-<form class="form" action="/api/update_car/<%= car.id %>" method="POST">
+<form class="form" action="/api/update_car/<%= car.id%>" method="POST">
 
+    <input type="hidden" name="id" value="<%= car.id%>">
     <label for="id_name">Coche</label>
     <input id="id_name" type="text" name="name" value="<%= car.name %>" >
 
-    <label for="brand">Marca</label>
-    <input id="brand" type="text" name="brand" value="<%= car.brandName %>" >
+    <label for="brandName">Marca</label>
+    <input id="brandName" type="text" name="brandName" value="<%= car.brandName %>" >
 
     <label for="cylinder">Cilindrada</label>
     <input id="cylinder" type="number" name="cylinder" value="<%= car.cylinder %>" >
@@ -22,6 +23,7 @@
     <input id="price" type="number" name="price" value="<%= car.price %>" >
 
     <input type="submit" value="Update">
+
 </form>
 </body>
 </html>
