@@ -168,6 +168,18 @@ app.post('/api/insert_car',(req, res)=>{
   res.redirect('/cars')
 })
 
+// UPDATE ELEMENT
+
+app.get('/update_car/:id', (req, res) => {
+  const carId = req.params.id;
+  const car = cars.find(car => car.id === parseInt(carId));
+  if (!car) {
+    return res.status(404).send('Car not found');
+  }
+  res.render('update_car.ejs', {
+    title: 'Update Car', car: car });
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

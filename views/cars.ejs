@@ -38,6 +38,10 @@
                 DELETE
             </button>
         </td>
+        <td class="table-delete"><button class="button-update" onclick="updateElement(<%= car.id %>)">
+                UPDATE
+            </button>
+        </td>
     </tr>
     <% }) %>
     </tbody>
@@ -61,6 +65,10 @@
             deleteElement(id);
         });
     });
+
+    function updateElement(id) {
+        window.location.href = '/update_car/' + id
+    }
 </script>
 </body>
 </html>

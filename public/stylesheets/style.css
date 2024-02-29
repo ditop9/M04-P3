@@ -45,9 +45,9 @@ a {
   margin-left: 3rem;
 }
 .table-main {
-  width: 50%;
+  width: 65%;
   text-align: center;
-  margin-left: 25%;
+  margin-left: 20%;
   border-spacing: 10px;
   margin-bottom: 5%;
 }
@@ -95,5 +95,19 @@ label, input {
   display: block;
   margin-top: 20px;
   align-items: center;
+}
+.button-update {
+  font-weight: bold;
+  margin: 0;
+  background-color: cornflowerblue;
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 100%;
+  height: 3rem;
+  box-sizing: border-box;
+}
+.button-update:hover {
+  background-color: black;
+  color: white;
 }
 
