@@ -42,10 +42,11 @@ app.get('/', (req, res) => {
 // GENERATE TABLES
 
 app.get('/brands', (req, res) => {
-    res.render('brands', {
+    res.status(200).render('brands', {
         title: 'Marcas',
         brands: brands
     })
+    res.status(404).send("ERROR")
 })
 
 app.get('/api/brands', (req, res) => {
@@ -53,10 +54,11 @@ app.get('/api/brands', (req, res) => {
 })
 
 app.get('/cars', (req, res) => {
-    res.render('cars', {
+    res.status(200).render('cars', {
         title: 'Coches',
         cars: cars
     })
+    res.status(404).send("ERROR")
 })
 
 app.get('/api/cars', (req, res) => {
@@ -66,19 +68,21 @@ app.get('/api/cars', (req, res) => {
 // INSERT BRANDS
 
 app.get('/insert_brand', (req, res) => {
-    res.render('insert_brand', {
+    res.status(200).render('insert_brand', {
         title: 'Insertar Marcas',
         brand: brands
     })
+    res.status(404).send("ERROR: S'HA PRODUÏT UN ERROR")
 })
 
 //INSERT CARS
 
 app.get('/insert_car', (req, res) => {
-    res.render('insert_car', {
+    res.status(200).render('insert_car', {
         title: 'Insertar Coches',
         cars: cars
     })
+    res.status(404).send("ERROR: S'HA PRODUÏT UN ERROR")
 })
 
 // SEARCH SINGLE ELEMENT
@@ -103,12 +107,12 @@ app.get('/search_car', (req, res) => {
     try {
         const carId = parseInt(req.query.id)
         const car = searchElementById(carId, cars)
-        res.render('single_car', {
+        res.status(200).render('single_car', {
             title: "Buscador de coches",
             car: car
         })
     } catch (error) {
-        res.status(404).send(error.message)
+        res.status(404).send("ERROR: COTXE NO TROBAT")
     }
 })
 
@@ -118,12 +122,12 @@ app.get('/search_brand', (req, res) => {
     try {
         const brandId = parseInt(req.query.id)
         const brand = searchElementById(brandId, brands)
-        res.render('single_brand', {
+        res.status(200).render('single_brand', {
             title: "Buscador de marcas",
             brand: brand
         })
     } catch (error) {
-        res.status(404).send(error.message)
+        res.status(404).send("ERROR: MARCA NO TROBADA")
     }
 })
 
@@ -189,21 +193,30 @@ app.delete('/api/brands/:id', (req, res) => {
 // INSERT BRANDS
 
 app.post('/api/insert_brand', (req, res) => {
-    let params = req.body
-    params.id = idBrands
-    idBrands += 1
-    brands.push(params)
-    res.redirect('/brands')
+    try {
+        let params = req.body
+        params.id = idBrands
+        idBrands += 1
+        brands.push(params)
+        res.status(201).redirect('/brands')
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
 })
 
 // INSERT CARS
 
 app.post('/api/insert_car', (req, res) => {
-    let params = req.body
-    params.id = idCars
-    idCars += 1
-    cars.push(params)
-    res.redirect('/cars')
+    try {
+        let params = req.body;
+        params.id = idCars;
+        idCars += 1;
+        cars.push(params);
+        res.status(201).redirect('/cars');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 })
 
 // UPDATE CAR
@@ -234,7 +247,7 @@ app.post('/api/update_car/:id', (req, res) => {
         price: req.body.price
     };
 
-    res.redirect('/cars');
+    res.status(200).redirect('/cars');
 });
 
 // UPDATE BRAND
@@ -266,7 +279,7 @@ app.post('/api/update_brand/:id', (req, res) => {
         car: req.body.car
     };
 
-    res.redirect('/brands');
+    res.status(200).redirect('/brands');
 });
 
 
