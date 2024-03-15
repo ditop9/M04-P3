@@ -38,6 +38,9 @@ a {
 .nav-item:last-child {
   border-right: 2px solid white;
 }
+.button-login {
+  margin-right: 0;
+}
 .title {
   margin-top: 5%;
 }

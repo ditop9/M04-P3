@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('header') %>
+<%- include('partials/header') %>
 <body>
-<%- include('navbar')%>
+<%- include('partials/navbar')%>
 <h1> UPDATE BRAND</h1>
 <form class="form" action="/api/update_brand/<%= brand.id %>" method="POST">
     <input type="hidden" name="id" value="<%= brand.id %>">
